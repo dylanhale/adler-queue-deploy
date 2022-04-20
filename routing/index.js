@@ -17,11 +17,11 @@ router.get('/', ensureUser, (req, res) => {
 
 //Admin Page with Admin Check Protection
 //route GET /admin
-router.get('/admin', ensureTa, async (req, res) => {
+router.get('/deptPortal', ensureTa, async (req, res) => {
     try {
         const admin = await Queue.find({ user: req.user.admin }).lean()
         const taNames = await TAGradersSchema.find({}).lean()
-        res.render('Admin', {
+        res.render('deptPortal', {
             name: req.user.firstName,
             mod: req.user.admin,
             taNames,
