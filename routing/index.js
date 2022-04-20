@@ -17,7 +17,7 @@ router.get('/', ensureUser, (req, res) => {
 
 //Admin Page with Admin Check Protection
 //route GET /admin
-router.get('/deptPortal', ensureTa, async (req, res) => {
+router.get('/deptPortal', ensureAdmin, async (req, res) => {
     try {
         const admin = await Queue.find({ user: req.user.admin }).lean()
         const taNames = await TAGradersSchema.find({}).lean()
