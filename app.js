@@ -78,10 +78,9 @@ app.use('/auth', require('./routing/auth'))
 app.use('/gradePortal', require('./routing/gradeLookup'))
 
 //Set PORT Number
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000
 
 //Listener for Logging purposes
-app.listen(
-  PORT,
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
-)
+app.listen(PORT, () => {
+  console.log(`Our app is running on port ${ PORT }`);
+})
