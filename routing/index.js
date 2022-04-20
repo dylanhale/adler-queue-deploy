@@ -165,7 +165,7 @@ router.post('/Grades/South', ensureTa, async (req, res) => {
 router.delete('/grades', ensureAdmin, async (req, res) => {
     try {
         await GradeScheme.deleteMany({})
-        res.redirect('/admin')
+        res.redirect('/deptPortal')
     } catch (error) {
         console.error(error)
         return res.render('error/500')
@@ -177,7 +177,7 @@ router.delete('/grades', ensureAdmin, async (req, res) => {
 router.delete('/HelpRequestNorth', ensureAdmin, async (req, res) => {
     try {
         await HelpRequestNorth.deleteMany({})
-        res.redirect('/admin')
+        res.redirect('/deptPortal')
     } catch (error) {
         console.error(error)
         return res.render('error/500')
@@ -189,27 +189,27 @@ router.delete('/HelpRequestNorth', ensureAdmin, async (req, res) => {
 router.delete('/HelpRequestSouth', ensureAdmin, async (req, res) => {
     try {
         await HelpRequestSouth.deleteMany({})
-        res.redirect('/admin')
+        res.redirect('/deptPortal')
     } catch (error) {
         console.error(error)
         return res.render('error/500')
     }
 })
 
-router.delete('/admin/:id', ensureAuth, async (req, res) => {
+router.delete('/deptPortal/:id', ensureAuth, async (req, res) => {
     try {
         await TAGradersSchema.remove({_id: req.params.id })
-        res.redirect('/admin')
+        res.redirect('/deptPortal')
     } catch (error) {
         console.error(error)
         return res.render('error/500')
     }
 })
 
-router.post('/admin', ensureAdmin, async (req, res) => {
+router.post('/deptPortal', ensureAdmin, async (req, res) => {
     try {
         await TAGradersSchema.create(req.body)
-        res.redirect('/admin')
+        res.redirect('/deptPortal')
     } catch (error) {
         console.error(error)
         res.render('error/500')
