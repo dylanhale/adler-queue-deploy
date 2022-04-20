@@ -18,18 +18,22 @@
                     <h6 for="deleteRequest">Delete all Grades</h6>
                 </button>
             </form>
+            <form action="/clearUsers" method="POST" id="delete-form">
+                <input type="hidden" name="_method" value="DELETE">
+            </form>
             <form action="/HelpRequestNorth" method="POST" id="delete-form">
                 <input type="hidden" name="_method" value="DELETE">
                 <button type="deleteRequest" class="btn red darken-4">
-                    <h6 for="deleteRequest">Delete all North Help Requests</h6>
+                    <h6 for="deleteRequest">Clear North Requests</h6>
                 </button>
             </form>
             <form action="/HelpRequestSouth" method="POST" id="delete-form">
                 <input type="hidden" name="_method" value="DELETE">
                 <button type="deleteRequest" class="btn red darken-4">
-                    <h6 for="deleteRequest">Delete all South Help Requests</h6>
+                    <h6 for="deleteRequest">Clear South Requests</h6>
                 </button>
             </form>
+            
             <h6>Admin Controls</h6>
         </div>
     </div>

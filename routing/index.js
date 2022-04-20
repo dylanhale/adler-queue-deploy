@@ -6,6 +6,7 @@ const HelpRequestNorth = require('../models/HelpRequestNorth')
 const GradeScheme = require('../models/Grades')
 const HelpRequestSouth = require('../models/HelpRequestSouth')
 const TAGradersSchema = require('../models/TAGraders')
+const UserSchema = require('../models/User')
 
 //Login Page
 //route GET /
@@ -172,6 +173,18 @@ router.delete('/grades', ensureAdmin, async (req, res) => {
     }
 })
 
+//Delete All Recorded Grades
+//route DELETE /clearUsers
+router.delete('/clearUsers', ensureAdmin, async (req, res) => {
+    try {
+        await UserSchema.deleteOne({ createdAt: {$gt: Date("2022, 04, 18")}})
+        res.redirect('/deptPortal')
+    } catch (error) {
+        console.error(error)
+        return res.render('error/500')
+    }
+})
+
 //Delete All North Help Requests
 //route DELETE /HelpRequestNorth
 router.delete('/HelpRequestNorth', ensureAdmin, async (req, res) => {
@@ -196,6 +209,8 @@ router.delete('/HelpRequestSouth', ensureAdmin, async (req, res) => {
     }
 })
 
+//Delete TA from TA List
+//route DELETE /deptPortal
 router.delete('/deptPortal/:id', ensureAuth, async (req, res) => {
     try {
         await TAGradersSchema.remove({_id: req.params.id })
@@ -206,6 +221,8 @@ router.delete('/deptPortal/:id', ensureAuth, async (req, res) => {
     }
 })
 
+//Add TA to TA List
+//route POST /deptPortal
 router.post('/deptPortal', ensureAdmin, async (req, res) => {
     try {
         await TAGradersSchema.create(req.body)

@@ -2,6 +2,8 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy
 const mongoose = require('mongoose')
 const User = require('../models/User')
 
+//Built from tutorial located at https://morioh.com/p/67cdf462489c
+
 module.exports = function(passport){
     passport.use(new GoogleStrategy({
         clientID: process.env.CLIENT_ID,

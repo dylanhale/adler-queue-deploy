@@ -12,6 +12,8 @@ const methodOverride = require('method-override')
 dotenv.config({ path: './config/config.env'})
 require('./config/passport')(passport)
 
+//Modified from tutorial located at https://morioh.com/p/67cdf462489c
+
 //Connect to Database
 dbConnect()
 
