@@ -56,6 +56,20 @@
                 </div>
             </div>
         {{else}}
+            {{#each hasRequest}}
+            {{#if requestOpen}}
+            <div class="inputColumn">
+            <div class="card">
+                <h4>Welcome</h4>
+                <h5>{{../fullName}}</h5>
+                <p> You are in Adler South </p>
+                {{!-- Help Request Button sends to DB with attribute 'help' --}}
+                <p>You currently have a request open please wait for help</p>
+                <h6>Adler Lab Queue</h6>
+            </div>
+        </div>
+        {{/if}}
+        {{else}}
             <div class="inputColumn">
             <div class="card">
                 <h4>Welcome</h4>
@@ -65,8 +79,8 @@
                 <form action="/HelpRequestSouth" method="POST" class="col s12">
                     <div class="row">
                         <div class="input-field">
-                            <input type="hidden" id="studentName" name="studentName" value="{{fullName}}">
-                            <input type="hidden" id="googleId" name="googleId" value="{{googleId}}">
+                            <input type="hidden" id="studentName" name="studentName" value="{{./fullName}}">
+                            <input type="hidden" id="googleId" name="googleId" value="{{./googleId}}">
                         </div>
                     </div>
 
@@ -81,8 +95,8 @@
                 <form action="/HelpRequestSouth" method="POST" class="col s12">
                     <div class="row">
                         <div class="input-field">
-                            <input type="hidden" id="studentName" name="studentName" value="{{fullName}}">
-                            <input type="hidden" id="googleId" name="googleId" value="{{googleId}}">
+                            <input type="hidden" id="studentName" name="studentName" value="{{./fullName}}">
+                            <input type="hidden" id="googleId" name="googleId" value="{{./googleId}}">
                         </div>
                     </div>
                     <div class="row">
@@ -94,6 +108,7 @@
                 <h6>Adler Lab Queue</h6>
             </div>
         </div>
+        {{/each}}
         {{/if}}        
     {{/if}}
     <div class="column">
@@ -126,47 +141,48 @@
                             </td>
                             <td>
                                 {{#if isGradeRequest}}
-                                    <div class="w3-container">
-                                        {{#if ../isTA}}
+                                        
+                                            {{#if ../isTA}}
                                             <button onclick="document.getElementById('id01').style.display='block'" class="btn green btn-labCheck">
                                                 <i class="fas fa-check"></i>
                                             </button>
-                                        {{/if}}
-                                        <div id="id01" class="w3-modal">
-                                            <div class="w3-modal-content w3-card-4">
-                                            <header class="w3-container w3-white"> 
-                                                <h4>Grade Input</h4>
-                                                <h6>Enter the grade information below</h6>
-                                            </header>
-                                            <div class="w3-container">
-                                                <form action="/Grades/South" method="POST" class="col s12">                   
-                                                    <div class="col">
+                                            {{/if}}
+                                        <div class="w3-container">
+                                            <div id="id01" class="w3-modal">
+                                                <div class="w3-modal-content w3-card-4">
+                                                <header class="w3-container w3-white"> 
+                                                    <h4>Grade Input</h4>
+                                                    <h6>Enter the grade information below</h6>
+                                                </header>
+                                                <div class="w3-container">
+                                                    <form action="/Grades/South" method="POST" class="col s12">                   
                                                         <div class="col">
-                                                            <div class="input-field">
-                                                                <select id="courseNumber" name="courseNumber">
-                                                                    <option value="111" id="courseNumber" name="courseNumber">111</option>
-                                                                    <option value="112" id="courseNumber" name="courseNumber">112</option>
-                                                                    <option value="211" id="courseNumber" name="courseNumber">211</option>
-                                                                </select>
-                                                                <label for="courseNumber">Course</label>
+                                                            <div class="col">
+                                                                <div class="input-field">
+                                                                    <select id="courseNumber" name="courseNumber">
+                                                                        <option value="111" id="courseNumber" name="courseNumber">111</option>
+                                                                        <option value="112" id="courseNumber" name="courseNumber">112</option>
+                                                                        <option value="211" id="courseNumber" name="courseNumber">211</option>
+                                                                    </select>
+                                                                    <label for="courseNumber">Course</label>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col">
-                                                            <div class="input-field">
-                                                                <select id="labSection" name="section">
-                                                                    <option value="1" id="section" name="section">1</option>
-                                                                    <option value="2" id="section" name="section">2</option>
-                                                                    <option value="3" id="section" name="section">3</option>
-                                                                    <option value="4" id="section" name="section">4</option>
-                                                                    <option value="5" id="section" name="section">5</option>
-                                                                    <option value="6" id="section" name="section">6</option>
-                                                                    <option value="7" id="section" name="section">7</option>
-                                                                    <option value="8" id="section" name="section">8</option>
-                                                                </select>
-                                                                <label for="test">Lab Section</label>
+                                                            <div class="col">
+                                                                <div class="input-field">
+                                                                    <select id="labSection" name="section">
+                                                                        <option value="1" id="section" name="section">1</option>
+                                                                        <option value="2" id="section" name="section">2</option>
+                                                                        <option value="3" id="section" name="section">3</option>
+                                                                        <option value="4" id="section" name="section">4</option>
+                                                                        <option value="5" id="section" name="section">5</option>
+                                                                        <option value="6" id="section" name="section">6</option>
+                                                                        <option value="7" id="section" name="section">7</option>
+                                                                        <option value="8" id="section" name="section">8</option>
+                                                                    </select>
+                                                                    <label for="test">Lab Section</label>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col">
+                                                            <div class="col">
                                                                 <div class="input-field">
                                                                     <select id="labGrade" name="labGrade">
                                                                         <option value="10" id="labGrade" name="labGrade">10</option>
@@ -179,37 +195,38 @@
                                                                     </select>
                                                                     <label for="labGrade">Grade</label>
                                                                 </div>
-                                                            </div>  
-                                                        <div class="col">
-                                                            <div class="input-field">
-                                                                <select id="taGrader" name="taGrader">
-                                                                    {{#each ../taNames}}
-                                                                    <option value="{{taName}}" id="taGrader" name="taGrader">{{taName}}</option>
-                                                                    {{/each}}
-                                                                </select>
-                                                                <label for="taGrader">TA Name</label>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="input-field">
+                                                                    <select id="taGrader" name="taGrader">
+                                                                        {{#each ../taNames}}
+                                                                        <option value="{{taName}}" id="taGrader" name="taGrader">{{taName}}</option>
+                                                                        {{/each}}
+                                                                    </select>
+                                                                    <label for="taGrader">TA Name</label>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <h4> </h4>
-                                                    </div> 
-                                                    <div class="col">
-                                                        <input type="button" onclick="document.getElementById('id01').style.display='none'" value="Cancel" class="btn red btn-grade">
-                                                    </div>
-                                                    <div class="row">
-                                                        <input type="hidden" id="studentName" name="studentName" value="{{studentName}}">
-                                                        <input type="hidden" id="helpRequestID" name="helpRequestID" value="{{./_id}}">
-                                                        <input type="submit" value="Submit" class="btn green btn-grade">
-                                                    </div> 
-                                                </form>
-                                            </div>
-                                            <footer class="w3-container w3-white">
-                                                <h6> </h6>
-                                            </footer>
+                                                        <div class="row">
+                                                            <h4> </h4>
+                                                        </div> 
+                                                        <div class="col">
+                                                            <input type="button" onclick="document.getElementById('id01').style.display='none'" value="Cancel" class="btn red btn-grade">
+                                                        </div>
+                                                        <div class="row">
+                                                            <input type="hidden" id="studentName" name="studentName" value="{{studentName}}">
+                                                            <input type="hidden" id="googleId" name="googleId" value="{{../googleId}}">
+                                                            <input type="hidden" id="helpRequestID" name="helpRequestID" value="{{./_id}}">
+                                                            <input type="submit" value="Submit" class="btn green btn-grade">
+                                                        </div> 
+                                                    </form>
+                                                </div>
+                                                <footer class="w3-container w3-white">
+                                                    <h6> </h6>
+                                                </footer>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                 {{/if}}
                             </td>
                         </tr>

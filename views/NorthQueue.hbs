@@ -56,16 +56,31 @@
                 </div>
             </div>
         {{else}}
+            {{#each hasRequest}}
+            {{#if requestOpen}}
+            <div class="inputColumn">
+            <div class="card">
+                <h4>Welcome</h4>
+                <h5>{{../fullName}}</h5>
+                <p> You are in Adler North </p>
+                {{!-- Help Request Button sends to DB with attribute 'help' --}}
+                <p>You currently have a request open please wait for help</p>
+                <h6>Adler Lab Queue</h6>
+            </div>
+        </div>
+        {{/if}}
+        {{else}}
             <div class="inputColumn">
             <div class="card">
                 <h4>Welcome</h4>
                 <h5>{{fullName}}</h5>
+                <p> You are in Adler North </p>
                 {{!-- Help Request Button sends to DB with attribute 'help' --}}
                 <form action="/HelpRequestNorth" method="POST" class="col s12">
                     <div class="row">
                         <div class="input-field">
-                            <input type="hidden" id="studentName" name="studentName" value="{{fullName}}">
-                            <input type="hidden" id="googleId" name="googleId" value="{{googleId}}">
+                            <input type="hidden" id="studentName" name="studentName" value="{{./fullName}}">
+                            <input type="hidden" id="googleId" name="googleId" value="{{./googleId}}">
                         </div>
                     </div>
 
@@ -80,8 +95,8 @@
                 <form action="/HelpRequestNorth" method="POST" class="col s12">
                     <div class="row">
                         <div class="input-field">
-                            <input type="hidden" id="studentName" name="studentName" value="{{fullName}}">
-                            <input type="hidden" id="googleId" name="googleId" value="{{googleId}}">
+                            <input type="hidden" id="studentName" name="studentName" value="{{./fullName}}">
+                            <input type="hidden" id="googleId" name="googleId" value="{{./googleId}}">
                         </div>
                     </div>
                     <div class="row">
@@ -93,6 +108,7 @@
                 <h6>Adler Lab Queue</h6>
             </div>
         </div>
+        {{/each}}
         {{/if}}        
     {{/if}}
     <div class="column">
