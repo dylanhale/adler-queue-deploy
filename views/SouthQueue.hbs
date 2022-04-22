@@ -61,7 +61,7 @@
                 <h4>Welcome {{fullName}}</h4>
                 <p> You are in Adler South </p>
                 {{!-- Help Request Button sends to DB with attribute 'help' --}}
-                <form action="/HelpRequestNorth" method="POST" class="col s12">
+                <form action="/HelpRequestSouth" method="POST" class="col s12">
                     <div class="row">
                         <div class="input-field">
                             <input type="hidden" id="studentName" name="studentName" value="{{fullName}}">
@@ -77,7 +77,7 @@
                 </form>
 
                 {{!-- Grade Request Button sends to DB with attribute 'grade' --}}
-                <form action="/HelpRequestNorth" method="POST" class="col s12">
+                <form action="/HelpRequestSouth" method="POST" class="col s12">
                     <div class="row">
                         <div class="input-field">
                             <input type="hidden" id="studentName" name="studentName" value="{{fullName}}">
