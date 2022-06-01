@@ -66,7 +66,6 @@ router.get('/NorthQueue', ensureAuth, async (req, res) => {
 router.get('/SouthQueue', ensureAuth, async (req, res) => {
     try {
         const helpRequests = await HelpRequestSouth.find({ user: req.userId }).lean()
-        const Numgrades = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         const taNames = await TAGradersSchema.find({}).sort({"taName":1}).lean()
         const hasRequest = await HelpRequestSouth.find({ googleId: req.user.googleId }).lean()
         res.render('SouthQueue', {
@@ -78,7 +77,6 @@ router.get('/SouthQueue', ensureAuth, async (req, res) => {
             isTA: req.user.isTA,
             isAdmin: req.user.isAdmin,
             taNames,
-            Numgrades,
             hasRequest,
             helpRequests
         })
@@ -153,7 +151,7 @@ router.post('/Grades/North/:id', ensureTa, async (req, res) => {
 
 //Post Grade from Adler South and Delete Request
 //route POST /grades
-router.post('/Grades/South', ensureTa, async (req, res) => {
+router.post('/Grades/South/:id', ensureTa, async (req, res) => {
     try {
         await GradeScheme.create(req.body)
         await HelpRequestSouth.deleteOne({ googleId: req.body.googleId })
