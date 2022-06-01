@@ -61,6 +61,33 @@ router.get('/NorthQueue', ensureAuth, async (req, res) => {
     }
 })
 
+//Board Queue View
+//route GET /BoardQueue
+router.get('/BoardQueue', ensureAuth, async (req, res) => {
+    try {
+        const helpRequests = await HelpRequestNorth.find({ user: req.userId }).lean()
+        const grades = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        const taNames = await TAGradersSchema.find({}).sort({"taName":1}).lean()
+        const hasRequest = await HelpRequestNorth.find({ googleId: req.user.googleId }).lean()
+        res.render('BoardQueue', {
+            name: req.user.firstName,
+            fullName: req.user.displayName,
+            userImage: req.user.image,
+            googleId: req.user.googleId,
+            isGradeRequest: req.isGradeRequest,
+            isTA: req.user.isTA,
+            isAdmin: req.user.isAdmin,
+            taNames, 
+            grades,
+            hasRequest,
+            helpRequests
+        })
+    } catch (error) {
+        console.error(error)
+        res.render('error/500')
+    }
+})
+
 //South Lab Queue
 //route GET /SouthQueue
 router.get('/SouthQueue', ensureAuth, async (req, res) => {
