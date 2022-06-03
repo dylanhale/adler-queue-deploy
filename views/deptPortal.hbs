@@ -15,11 +15,9 @@
     <div class="adminColumn1">
         <div class="card">
             <h2>Admin Control Panel</h2>
-
-            <form action="/grades" method="POST" id="delete-form">
-                <input type="hidden" name="_method" value="DELETE">
-                <button type="deleteRequest" class="btn red darken-4">
-                    <h6 for="deleteRequest">Delete all Grades</h6>
+            <form action="/gradeDeletionUtility">
+                <button class="btn red darken-4">
+                    <h6>Grade Deletion Utility</h6>
                 </button>
             </form>
             <form action="/clearUsers" method="POST" id="delete-form">
@@ -28,13 +26,13 @@
             <form action="/HelpRequestNorth" method="POST" id="delete-form">
                 <input type="hidden" name="_method" value="DELETE">
                 <button type="deleteRequest" class="btn red darken-4">
-                    <h6 for="deleteRequest">Clear North Requests</h6>
+                    <h6 for="deleteRequest">Clear North Requests </h6>
                 </button>
             </form>
             <form action="/HelpRequestSouth" method="POST" id="delete-form">
                 <input type="hidden" name="_method" value="DELETE">
                 <button type="deleteRequest" class="btn red darken-4">
-                    <h6 for="deleteRequest">Clear South Requests</h6>
+                    <h6 for="deleteRequest">Clear South Requests </h6>
                 </button>
             </form>
             

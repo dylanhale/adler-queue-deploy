@@ -95,6 +95,12 @@ body {
     padding: 0 10px;
 }
 
+.boardColumn {
+    justify-content: center;
+    width: 101.5%;
+    padding: 15px 5px;
+}
+
 .inputColumn {
     float: left;
     width: 20%;
@@ -102,11 +108,10 @@ body {
     display: flex;
 }
 
-.boardColumn {
+.boardDisplayColumn {
     width: 49%;
     padding: 0 5px;
-    display:inline-block;
-    justify-content: center;
+    display: inline-table;
 }
 
 .studentInputColumn {

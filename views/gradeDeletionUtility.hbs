@@ -1,0 +1,81 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+{{!-- Blank Div for spacing --}}
+<div class="pageHeader">
+    <div class="row">
+        <div class="input-field">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="adminColumn1">
+        <div class="card">
+            <h2>Navigation Panel</h2>
+            <div class="row">
+                <button class="btn grey darken-3"><a href="/NorthQueue">North Queue </a></button>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn grey darken-3"><a href="/SouthQueue">South Queue </a></button>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn grey darken-3"><a href="/gradePortal">Grade Portal</a></button>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn grey darken-3"><a href="/deptPortal">Admin Portal</a></button>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                </div>
+            </div>
+            
+            <h6>Navigation Controls</h6>
+        </div>
+    </div>
+    <div class="adminColumn2">
+        <div class="card">
+            <h2>Grade Deletion Panel</h2>
+
+            <form action="/grades/111" method="POST" id="delete-form">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="deleteRequest" class="btn red darken-4">
+                    <h6 for="deleteRequest">Delete all 111 Grades</h6>
+                </button>
+            </form>
+            <form action="/grades/112" method="POST" id="delete-form">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="deleteRequest" class="btn red darken-4">
+                    <h6 for="deleteRequest">Delete all 112 Grades</h6>
+                </button>
+            </form>
+            <form action="/grades/211" method="POST" id="delete-form">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="deleteRequest" class="btn red darken-4">
+                    <h6 for="deleteRequest">Delete all 211 Grades</h6>
+                </button>
+            </form>
+            <form action="/grades" method="POST" id="delete-form">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="deleteRequest" class="btn red darken-4">
+                    <h6 for="deleteRequest">   Delete all Grades    </h6>
+                </button>
+            </form>
+            
+            
+            <h6>Grade Deletion Controls</h6>
+        </div>
+    </div>
+</div>

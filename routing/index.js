@@ -34,6 +34,24 @@ router.get('/deptPortal', ensureAdmin, async (req, res) => {
     }
 })
 
+//Grade Deletion Page with Admin Check Protection
+//route GET /gradeDeletionUtility
+router.get('/gradeDeletionUtility', ensureAdmin, async (req, res) => {
+    try {
+        const admin = await Queue.find({ user: req.user.admin }).lean()
+        const taNames = await TAGradersSchema.find({}).lean()
+        res.render('gradeDeletionUtility', {
+            name: req.user.firstName,
+            mod: req.user.admin,
+            taNames,
+            admin
+        })
+    } catch (error) {
+        console.error(error)
+        res.render('error/500')
+    }
+})
+
 //North Lab Queue
 //route GET /NorthQueue
 router.get('/NorthQueue', ensureAuth, async (req, res) => {
@@ -63,12 +81,10 @@ router.get('/NorthQueue', ensureAuth, async (req, res) => {
 
 //Board Queue View
 //route GET /BoardQueue
-router.get('/BoardQueue', ensureAuth, async (req, res) => {
+router.get('/BoardQueue', ensureTa, async (req, res) => {
     try {
-        const helpRequests = await HelpRequestNorth.find({ user: req.userId }).lean()
-        const grades = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        const taNames = await TAGradersSchema.find({}).sort({"taName":1}).lean()
-        const hasRequest = await HelpRequestNorth.find({ googleId: req.user.googleId }).lean()
+        const northRequests = await HelpRequestNorth.find({ user: req.userId }).lean()
+        const southRequests = await HelpRequestSouth.find({}).lean()
         res.render('BoardQueue', {
             name: req.user.firstName,
             fullName: req.user.displayName,
@@ -77,10 +93,8 @@ router.get('/BoardQueue', ensureAuth, async (req, res) => {
             isGradeRequest: req.isGradeRequest,
             isTA: req.user.isTA,
             isAdmin: req.user.isAdmin,
-            taNames, 
-            grades,
-            hasRequest,
-            helpRequests
+            northRequests,
+            southRequests
         })
     } catch (error) {
         console.error(error)
@@ -194,15 +208,52 @@ router.post('/Grades/South/:id', ensureTa, async (req, res) => {
 router.delete('/grades', ensureAdmin, async (req, res) => {
     try {
         await GradeScheme.deleteMany({})
-        res.redirect('/deptPortal')
+        res.redirect('/gradeDeletionUtility')
     } catch (error) {
         console.error(error)
         return res.render('error/500')
     }
 })
 
-//Delete All Recorded Grades
+//Delete All 111 Grades
+//route DELETE /grades
+router.delete('/grades/111', ensureAdmin, async (req, res) => {
+    try {
+        await GradeScheme.deleteMany({ courseNumber: 111 })
+        res.redirect('/gradeDeletionUtility')
+    } catch (error) {
+        console.error(error)
+        return res.render('error/500')
+    }
+})
+
+//Delete All 112 Grades
+//route DELETE /grades
+router.delete('/grades/112', ensureAdmin, async (req, res) => {
+    try {
+        await GradeScheme.deleteMany({ courseNumber: 112 })
+        res.redirect('/gradeDeletionUtility')
+    } catch (error) {
+        console.error(error)
+        return res.render('error/500')
+    }
+})
+
+//Delete All 211 Grades
+//route DELETE /grades
+router.delete('/grades/211', ensureAdmin, async (req, res) => {
+    try {
+        await GradeScheme.deleteMany({ courseNumber: 211 })
+        res.redirect('/gradeDeletionUtility')
+    } catch (error) {
+        console.error(error)
+        return res.render('error/500')
+    }
+})
+
+//Delete All Recorded Users
 //route DELETE /clearUsers
+//Does not function properly -- Cannot be accessed on site
 router.delete('/clearUsers', ensureAdmin, async (req, res) => {
     try {
         await UserSchema.deleteOne({ createdAt: {$gt: Date("2022, 04, 18")}})

@@ -1,20 +1,20 @@
 <head>
     {{!-- Reload site every 30 seconds // This is a workaround for websocket --}}
-    <meta http-equiv="refresh" content="30">
+    {{!--<meta http-equiv="refresh" content="30">--}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.9">
 </head>
 
-{{!-- Page Navigation --}}
+{{!-- Page Navigation--}} 
 <div class="pageHeader">
     <div class="card">
         <div class="row center">
-            <h2 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">CSCI Adler Lab Queue System</h2>
+            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">CSCI Adler Lab Queue</h1>
         </div>
-        <div class="row center">
+        {{!--<div class="row center">
             <button class="btn grey darken-3"><a href="/NorthQueue">Go To Adler North</a></button>
             <button class="btn grey darken-3"><a href="/SouthQueue">Go To Adler South</a></button>
-        </div>
+        </div>--}}
     </div>
 </div>
 
@@ -27,47 +27,69 @@
     });
 </script>
 
-<div class="column">
-    <div class="boardColumn">
+<div class="boardColumn">
+    <div class="boardDisplayColumn">
         <div class="card">
             <table>
                 <thead>
                     <caption>Adler North Queue</caption>
                     <tr>
-                        <th>Request Type</th>
-                        <th>Name</th>
-                        <th>Date</th>
+                        <th style="text-align:center">Type</th>
+                        <th style="text-align:center">Name</th>
+                        <th style="text-align:center">Date</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each helpRequests}}
+                    {{#each northRequests}}
                         <tr>
-                            <td>{{requestType}}</td>
-                            <td>{{studentName}}</td>
-                            <td>{{formatDate dateSubmitted 'h:mm:ss a'}}</td>
+                            <td style="text-align:center">
+                                {{#if isGradeRequest}}
+                                    <button class="btn green">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                {{else}}
+                                    <button class="btn red">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </button>
+                                {{/if}}
+                                
+                            </td>
+                            <td style="text-align:center">{{studentName}}</td>
+                            <td style="text-align:center">{{formatDate dateSubmitted 'h:mm:ss a'}}</td>
                         </tr>
                     {{/each}}
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="boardColumn">
+    <div class="boardDisplayColumn">
         <div class="card">
             <table>
                 <thead>
                     <caption>Adler South Queue</caption>
                     <tr>
-                        <th>Request Type</th>
-                        <th>Name</th>
-                        <th>Date</th>
+                        <th style="text-align:center">Type</th>
+                        <th style="text-align:center">Name</th>
+                        <th style="text-align:center">Date</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each helpRequests}}
+                    {{#each southRequests}}
                         <tr>
-                            <td>{{requestType}}</td>
-                            <td>{{studentName}}</td>
-                            <td>{{formatDate dateSubmitted 'h:mm:ss a'}}</td>
+                            <td style="text-align:center">
+                                {{#if isGradeRequest}}
+                                    <button class="btn green">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                {{else}}
+                                    <button class="btn red">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </button>
+                                {{/if}}
+                                
+                            </td>
+                            <td style="text-align:center">{{studentName}}</td>
+                            <td style="text-align:center">{{formatDate dateSubmitted 'h:mm:ss a'}}</td>
                         </tr>
                     {{/each}}
                 </tbody>
