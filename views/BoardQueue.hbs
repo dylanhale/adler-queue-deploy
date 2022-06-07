@@ -48,9 +48,12 @@
                                         <i class="fas fa-check"></i>
                                     </button>
                                 {{else}}
-                                    <button class="btn red">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                    </button>
+                                    <form action="/HelpRequestNorthBoard/{{_id}}" method="POST" id="delete-form">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="deleteRequest" class="btn red btn-queueDelete">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                        </button>
+                                    </form>
                                 {{/if}}
                                 
                             </td>
@@ -82,11 +85,13 @@
                                         <i class="fas fa-check"></i>
                                     </button>
                                 {{else}}
-                                    <button class="btn red">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                    </button>
+                                    <form action="/HelpRequestSouthBoard/{{_id}}" method="POST" id="delete-form">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="deleteRequest" class="btn red btn-queueDelete">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                        </button>
+                                    </form>
                                 {{/if}}
-                                
                             </td>
                             <td style="text-align:center">{{studentName}}</td>
                             <td style="text-align:center">{{formatDate dateSubmitted 'h:mm:ss a'}}</td>

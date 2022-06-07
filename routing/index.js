@@ -152,6 +152,18 @@ router.delete('/HelpRequestNorth/:id', ensureAuth, async (req, res) => {
     }
 })
 
+//Delete North Board Queue Help Request
+//route DELETE /HelpRequestNorthBoard
+router.delete('/HelpRequestNorthBoard/:id', ensureAuth, async (req, res) => {
+    try {
+        await HelpRequestNorth.remove({_id: req.params.id })
+        res.redirect('/BoardQueue')
+    } catch (error) {
+        console.error(error)
+        return res.render('error/500')
+    }
+})
+
 //Add South Queue Help Request
 //route POST /SouthQueue
 router.post('/HelpRequestSouth', ensureAuth, async (req, res) => {
@@ -171,6 +183,18 @@ router.delete('/HelpRequestSouth/:id', ensureAuth, async (req, res) => {
     try {
         await HelpRequestSouth.remove({_id: req.params.id })
         res.redirect('/SouthQueue')
+    } catch (error) {
+        console.error(error)
+        return res.render('error/500')
+    }
+})
+
+//Delete South Board Queue Help Request
+//route DELETE /HelpRequestSouthBoard
+router.delete('/HelpRequestSouthBoard/:id', ensureAuth, async (req, res) => {
+    try {
+        await HelpRequestSouth.remove({_id: req.params.id })
+        res.redirect('/BoardQueue')
     } catch (error) {
         console.error(error)
         return res.render('error/500')
